@@ -32,3 +32,6 @@ node_modules/
 
 # VSCode
 .vscode/
+
+# Keep vendored code around
+!vendor/**
