@@ -1,0 +1,18 @@
+(library
+ (name wasmtime)
+ (public_name wasmtime)
+ (foreign_stubs
+  (language c)
+  (names wasm_stubs ocaml_helpers)
+  (flags -O2 -Wall -Wextra))
+ (foreign_archives wasmtime)
+ (c_library_flags -lpthread -ldl -lm))
+
+(rule
+ (deps libwasmtime.a)
+ (targets dllwasmtime.so)
+ (action
+  (no-infer
+   (progn
+    (run %{cc} -shared -o dllwasmtime.so libwasmtime.a -lstdc++)
+    (copy dllwasmtime.so dllwasmtime.so)))))
