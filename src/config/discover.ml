@@ -16,7 +16,8 @@ let () =
               libs =
                 [ "-luserenv"; "-lole32"; "-lntdll"; "-lws2_32"; "-lkernel32" ];
             }
-        | Some _ -> default
+        | Some unknown ->
+            failwith ("We don't know how to build for platform" ^ unknown)
       in
 
       C.Flags.write_sexp "c_flags.sexp" conf.cflags;
