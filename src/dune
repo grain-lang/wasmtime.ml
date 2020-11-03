@@ -31,3 +31,8 @@
   (= %{system} linux))
  (action
   (copy ../vendor/%{system}/lib/libwasmtime.so dllwasmtime.so)))
+
+(rule
+ (target dllwasmtime.dll)
+ (action
+  (copy ../vendor/%{system}/lib/wasmtime.dll dllwasmtime.dll)))
