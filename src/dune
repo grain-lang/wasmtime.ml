@@ -34,5 +34,7 @@
 
 (rule
  (target dllwasmtime.dll)
+ (enabled_if
+  (= %{system} mingw64))
  (action
   (copy ../vendor/%{system}/lib/wasmtime.dll dllwasmtime.dll)))
