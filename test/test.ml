@@ -25,14 +25,21 @@ let instance = Instance.create store mod_
 
 (* The `Instance` gives us access to various exported functions and items,
 which we access here to pull out our `answer` exported function and run it. *)
+let add_extern =
+  Instance.get_extern instance "add" |> function
+  | Some extern -> extern
+  | None -> failwith "Could not get extern"
+
 let add =
-  Instance.get_extern instance "add"
-  |> Option.fold ~some:Extern.as_func ~none:None
-  |> Option.get
+  Extern.as_func add_extern |> function
+  | Some func -> func
+  | None -> failwith "Could not get function for extern"
 
 (* And finally we can call our function! Note that the error propagation
 with `?` is done to handle the case where the wasm function traps. *)
 let result =
-  Func.call add [ Val.i32 88l; Val.i32 2l ] |> Val.to_int32 |> Option.get
+  Func.call add [ Val.i32 88l; Val.i32 2l ] |> Val.to_int32 |> function
+  | Some result -> result
+  | None -> failwith "Could not get the result"
 
 let _ = Printf.printf "result: %ld" result
