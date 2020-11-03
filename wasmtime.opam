@@ -1,0 +1,17 @@
+opam-version: "2.0"
+version: "0.0.0"
+synopsis: "OCaml bindings for Wasmtime"
+maintainer: "oscar@grain-lang.org"
+author: "Oscar Spencer"
+license: " Apache-2.0"
+homepage: "https://github.com/grain-lang/wasmtime.ml"
+dev-repo: "git+https://github.com/grain-lang/wasmtime.ml.git"
+bug-reports: "https://github.com/grain-lang/wasmtime.ml/issues"
+build: [
+  [ "dune" "subst" ] {pinned}
+  [ "dune" "build" "-p" name "-j" jobs "--no-buffer" ]
+]
+depends: [
+  "ocaml" {>= "4.08"}
+  "dune" {= "2.6.1"}
+]
