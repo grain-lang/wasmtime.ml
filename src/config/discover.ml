@@ -11,10 +11,10 @@ let () =
         | Some ("linux" | "macosx") ->
             { default with libs = [ "-lpthread"; "-ldl"; "-lm" ] }
         | Some "mingw64" ->
+            (* Taken from https://github.com/bytecodealliance/wasmtime-go/commit/21d072af9cc286718c093b3df43f2948e3926d8d *)
             {
               cflags = [ "-DWASM_API_EXTERN="; "-DWASI_API_EXTERN=" ];
-              libs =
-                [ "-luserenv"; "-lole32"; "-lntdll"; "-lws2_32"; "-lkernel32" ];
+              libs = [ "-luserenv"; "-lole32"; "-lws2_32"; "-lkernel32" ];
             }
         | Some unknown ->
             failwith ("We don't know how to build for platform" ^ unknown)
