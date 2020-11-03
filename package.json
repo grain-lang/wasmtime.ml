@@ -6,7 +6,8 @@
   "license": "Apache-2.0",
   "dependencies": {
     "ocaml": "^4.11.0",
-    "@opam/dune": "^2.7.1"
+    "@opam/dune": "^2.7.1",
+    "@opam/dune-configurator": "^2.7.1"
   },
   "devDependencies": {
     "@opam/ocamlformat": "^0.15.0",

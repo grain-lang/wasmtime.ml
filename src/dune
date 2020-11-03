@@ -4,9 +4,16 @@
  (foreign_stubs
   (language c)
   (names wasm_stubs ocaml_helpers)
-  (flags -O2 -Wall -Wextra))
+  (flags
+   (:include c_flags.sexp)))
  (foreign_archives wasmtime)
- (c_library_flags -lpthread))
+ (c_library_flags
+  (:include c_library_flags.sexp)))
+
+(rule
+ (targets c_flags.sexp c_library_flags.sexp)
+ (action
+  (run ./config/discover.exe)))
 
 (rule
  (target wasm.h)
