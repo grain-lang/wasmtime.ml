@@ -109,6 +109,7 @@ caml_wasmtime_wasm_instance_get_extern(value _instanceTuple, value _lookupName) 
   for (size_t i = 0; i < exporttypes.size; i++) {
     wasm_exporttype_t* exporttype = exporttypes.data[i];
     const char* exportName = (const char*) wasm_exporttype_name(exporttype)->data;
+    printf("\n\nfound: %s\nlooking for: %s\nmemcmp: %d\n\n", exportName, lookupName, memcmp(lookupName, exportName, lookupLen));
     if (lookupLen == strlen(exportName) && memcmp(lookupName, exportName, lookupLen) == 0) {
       CAMLreturn(caml_alloc_some(alloc_wasm_extern_t(externs.data[i])));
     }
