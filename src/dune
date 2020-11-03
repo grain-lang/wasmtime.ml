@@ -6,7 +6,7 @@
   (names wasm_stubs ocaml_helpers)
   (flags -O2 -Wall -Wextra))
  (foreign_archives wasmtime)
- (c_library_flags -lpthread -ldl -lm))
+ (c_library_flags -lpthread))
 
 (rule
  (target wasm.h)
