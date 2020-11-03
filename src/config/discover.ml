@@ -10,7 +10,7 @@ let () =
         | None -> default
         | Some ("linux" | "macosx") ->
             { default with libs = [ "-lpthread"; "-ldl"; "-lm" ] }
-        | Some "mingw" ->
+        | Some "mingw64" ->
             {
               cflags = [ "-DWASM_API_EXTERN="; "-DWASI_API_EXTERN=" ];
               libs =
