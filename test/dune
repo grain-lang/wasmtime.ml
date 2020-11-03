@@ -2,8 +2,6 @@
  (name test)
  (modules test)
  (deps adder.wasm)
- (modes
-  (best exe))
  (libraries wasmtime)
  (action
   (run %{test})))
